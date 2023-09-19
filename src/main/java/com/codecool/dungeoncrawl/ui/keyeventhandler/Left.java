@@ -9,7 +9,7 @@ public class Left implements KeyHandler {
 
     @Override
     public void perform(KeyEvent event, GameMap map) {
-        if(code.equals(event.getCode()) && map.isWall(-1, 0, map))
+        if(code.equals(event.getCode()) && map.isCanMove(-1, 0))
             map.getPlayer().move(-1, 0);
     }
 }

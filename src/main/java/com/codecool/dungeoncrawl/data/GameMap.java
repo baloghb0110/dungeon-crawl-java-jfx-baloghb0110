@@ -41,11 +41,11 @@ public class GameMap {
         return height;
     }
 
-    public boolean isCanMove(int x, int y, GameMap map){
-        int playerX = map.getPlayer().getX();
-        int playerY = map.getPlayer().getY();
+    public boolean isCanMove(int x, int y){
+        int playerX = player.getX();
+        int playerY = player.getY();
 
-        Cell currentCell = map.getCell(playerX, playerY);
+        Cell currentCell = getCell(playerX, playerY);
         Cell nextCell = currentCell.getNeighbor(x, y);
 
         if(nextCell.getType() == CellType.FLOOR && nextCell.getActor() == null)
