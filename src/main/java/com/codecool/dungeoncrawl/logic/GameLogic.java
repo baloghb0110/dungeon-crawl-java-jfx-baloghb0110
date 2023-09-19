@@ -2,12 +2,22 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.ui.UI;
+import javafx.animation.AnimationTimer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameLogic {
     private GameMap map;
+    private List<Skeleton> skeletons;
 
     public GameLogic() {
         this.map = MapLoader.loadMap();
+        this.skeletons = new ArrayList<>();
+        findSkeletons();
     }
 
     public double getMapWidth() {
@@ -32,5 +42,36 @@ public class GameLogic {
 
     public GameMap getMap() {
         return map;
+    }
+
+    public void startGameLoop(UI ui) {
+        new AnimationTimer() {
+            private long lastUpdate = 0;
+            @Override
+            public void handle(long now) {
+                double elapsedSeconds = (now - lastUpdate) / 1_000_000_000.0;
+                if(elapsedSeconds < 1)
+                    return;
+
+                for (Skeleton skeleton : skeletons) {
+                    skeleton.makeRandomMove();
+                }
+
+                ui.refresh();
+                lastUpdate = now;
+            }
+        }.start();
+    }
+
+    private void findSkeletons() {
+        for (int x = 0; x < map.getWidth(); x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                Cell cell = map.getCell(x, y);
+                Actor actor = cell.getActor();
+                if (actor instanceof Skeleton) {
+                    skeletons.add((Skeleton) actor);
+                }
+            }
+        }
     }
 }
