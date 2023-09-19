@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Player;
+import com.codecool.dungeoncrawl.logic.Game;
 
 public class GameMap {
     private int width;
@@ -38,5 +39,16 @@ public class GameMap {
 
     public int getHeight() {
         return height;
+    }
+
+    public boolean isWall(int x, int y, GameMap map){
+        int playerX = map.getPlayer().getX();
+        int playerY = map.getPlayer().getY();
+
+        Cell currentCell = map.getCell(playerX, playerY);
+        Cell nextCell = currentCell.getNeighbor(x, y);
+        if(nextCell.getType() == CellType.WALL)
+            return false;
+        return true;
     }
 }
