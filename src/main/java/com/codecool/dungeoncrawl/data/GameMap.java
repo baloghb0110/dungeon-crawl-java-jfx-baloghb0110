@@ -41,14 +41,15 @@ public class GameMap {
         return height;
     }
 
-    public boolean isWall(int x, int y, GameMap map){
+    public boolean isCanMove(int x, int y, GameMap map){
         int playerX = map.getPlayer().getX();
         int playerY = map.getPlayer().getY();
 
         Cell currentCell = map.getCell(playerX, playerY);
         Cell nextCell = currentCell.getNeighbor(x, y);
-        if(nextCell.getType() == CellType.WALL)
-            return false;
-        return true;
+
+        if(nextCell.getType() == CellType.FLOOR && nextCell.getActor() == null)
+            return true;
+        return false;
     }
 }
