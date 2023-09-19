@@ -41,7 +41,7 @@ public class GameMap {
         return height;
     }
 
-    public boolean isCanMove(int x, int y){
+    public boolean isAvailableCell(int x, int y){
         int playerX = player.getX();
         int playerY = player.getY();
 
