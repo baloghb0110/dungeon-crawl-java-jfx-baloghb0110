@@ -40,16 +40,4 @@ public class GameMap {
     public int getHeight() {
         return height;
     }
-
-    public boolean isAvailableCell(int x, int y){
-        int playerX = player.getX();
-        int playerY = player.getY();
-
-        Cell currentCell = getCell(playerX, playerY);
-        Cell nextCell = currentCell.getNeighbor(x, y);
-
-        if(nextCell.getType() == CellType.FLOOR && nextCell.getActor() == null)
-            return true;
-        return false;
-    }
 }
