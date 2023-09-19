@@ -2,6 +2,9 @@ package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Actor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
@@ -33,6 +36,15 @@ public class Cell implements Drawable {
 
     public Cell getNeighbor(int dx, int dy) {
         return gameMap.getCell(x + dx, y + dy);
+    }
+
+    public List<Cell> getNeighbourCells(int dx, int dy) {
+        List<Cell> neighbourCells = new ArrayList<>();
+        neighbourCells.add(gameMap.getCell(x + dx, y + dy));
+        neighbourCells.add(gameMap.getCell(x - dx, y - dy));
+        neighbourCells.add(gameMap.getCell(x + dx, y - dy));
+        neighbourCells.add(gameMap.getCell(x - dx, y + dy));
+        return neighbourCells;
     }
 
     @Override
