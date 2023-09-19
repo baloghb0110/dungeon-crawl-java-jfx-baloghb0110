@@ -9,7 +9,7 @@ public class Up implements KeyHandler {
 
     @Override
     public void perform(KeyEvent event, GameMap map) {
-        if(code.equals(event.getCode()) && map.isCanMove(0, -1))
+        if(code.equals(event.getCode()) && map.isAvailableCell(0, -1))
             map.getPlayer().move(0, -1);
     }
 }
