@@ -37,8 +37,8 @@ public class Cell implements Drawable {
         int newXCoordinate = x + dx;
         int newYCoordinate = y + dy;
 
-        if (newXCoordinate > 0 && newXCoordinate < gameMap.getWidth() &&
-                newYCoordinate > 0 && newYCoordinate < gameMap.getHeight()) {
+        if (newXCoordinate >= 0 && newXCoordinate < gameMap.getWidth() &&
+                newYCoordinate >= 0 && newYCoordinate < gameMap.getHeight()){
                 return gameMap.getCell(newXCoordinate, newYCoordinate);
         }
         return null;
