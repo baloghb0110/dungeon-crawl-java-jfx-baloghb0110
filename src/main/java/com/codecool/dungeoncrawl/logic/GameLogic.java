@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.items.Inventory;
 import com.codecool.dungeoncrawl.data.items.Item;
@@ -98,7 +99,11 @@ public class GameLogic {
                 if (elapsedSeconds < 1) return;
 
                 for (Skeleton skeleton : skeletons) {
-                    skeleton.makeRandomMove();
+                    if (isPlayerInRange(map.getPlayer(), skeleton)) {
+                        skeleton.chasePlayer(map.getPlayer());
+                    } else {
+                        skeleton.makeRandomMove();
+                    }
                 }
 
                 ui.refresh();
@@ -117,5 +122,14 @@ public class GameLogic {
                 }
             }
         }
+    }
+
+    private boolean isPlayerInRange(Player player, Skeleton skeleton) {
+        int dx = Math.abs(player.getX() - skeleton.getX());
+        int dy = Math.abs(player.getY() - skeleton.getY());
+
+        int chaseRange = 5;
+
+        return dx <= chaseRange && dy <= chaseRange;
     }
 }
