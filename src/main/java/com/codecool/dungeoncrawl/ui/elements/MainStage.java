@@ -29,4 +29,12 @@ public class MainStage {
     public void setHealthLabelText(String text) {
         this.statusPane.setHealthValue(text);
     }
+
+    public void setDamageLabelText(String text) {
+        this.statusPane.setDamageValue(text);
+    }
+
+    public void setDefenseLabelText(String text) {
+        this.statusPane.setDefenseValue(text);
+    }
 }

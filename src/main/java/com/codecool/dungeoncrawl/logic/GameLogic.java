@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.items.Inventory;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.specialities.Speciality;
 import com.codecool.dungeoncrawl.ui.UI;
 import javafx.animation.AnimationTimer;
 
@@ -73,6 +74,13 @@ public class GameLogic {
             currentCell.setItem(null);
             System.out.println("item removed from map: " + itemName);
         }
+
+    public String getPlayerDamage() {
+        return Integer.toString(map.getPlayer().getDamage());
+    }
+
+    public String getPlayerDefense() {
+        return Integer.toString(map.getPlayer().getDefense());
     }
 
     public GameMap getMap() {
