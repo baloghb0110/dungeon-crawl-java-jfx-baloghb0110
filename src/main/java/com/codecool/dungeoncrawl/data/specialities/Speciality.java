@@ -1,4 +1,4 @@
-package com.codecool.dungeoncrawl.data.Specialities;
+package com.codecool.dungeoncrawl.data.specialities;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
@@ -14,6 +14,8 @@ public abstract class Speciality implements Drawable {
 
     public Speciality(Cell cell) {
         this.cell = cell;
+        this.cell.setSpeciality(this);
+        random = new Random();
     }
 
     public Cell getCell() {
