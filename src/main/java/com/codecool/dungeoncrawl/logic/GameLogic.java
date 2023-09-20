@@ -1,10 +1,14 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.specialities.Gate;
 import com.codecool.dungeoncrawl.data.specialities.Speciality;
+import com.codecool.dungeoncrawl.data.specialities.Water;
+import com.codecool.dungeoncrawl.data.specialities.WaterSwitcher;
 import com.codecool.dungeoncrawl.ui.UI;
 import javafx.animation.AnimationTimer;
 
@@ -79,6 +83,22 @@ public class GameLogic {
                 if (actor instanceof Skeleton) {
                     skeletons.add((Skeleton) actor);
                 }
+            }
+        }
+    }
+
+    public void releaseWater() {
+        int counter = -1;
+        Cell waterGateCell = map.findOpenedWaterGate();
+        if (waterGateCell != null) {
+            Cell currentCell = waterGateCell.getNeighbor(0, counter--);
+            new Water(currentCell);
+            if (currentCell.getTileName().equals("fire")) {
+                do {
+                    currentCell.setSpeciality(null);
+                    currentCell = currentCell.getNeighbor(0, counter++);
+                }
+                while (currentCell.getType() == CellType.WALL);
             }
         }
     }
