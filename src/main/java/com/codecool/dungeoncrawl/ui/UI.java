@@ -45,6 +45,7 @@ public class UI {
             keyHandler.perform(keyEvent, logic.getMap());
         }
         refresh();
+        logic.addItemToInventory();
     }
 
     public void refresh() {
@@ -58,7 +59,6 @@ public class UI {
                 } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
                 } else {
-                    System.out.println(cell.getTileName());
                     Tiles.drawTile(context, cell, x, y);
                 }
             }

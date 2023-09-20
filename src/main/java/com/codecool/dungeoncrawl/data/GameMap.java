@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Player;
+import com.codecool.dungeoncrawl.data.items.Inventory;
 import com.codecool.dungeoncrawl.logic.Game;
 
 public class GameMap {
@@ -41,15 +42,29 @@ public class GameMap {
         return height;
     }
 
-    public boolean isAvailableCell(int x, int y){
+    public boolean isAvailableCell(int x, int y) {
         int playerX = player.getX();
         int playerY = player.getY();
 
         Cell currentCell = getCell(playerX, playerY);
         Cell nextCell = currentCell.getNeighbor(x, y);
 
-        if(nextCell.getType() == CellType.FLOOR && nextCell.getActor() == null)
+        if (nextCell.getType() == CellType.FLOOR && nextCell.getActor() == null)
             return true;
         return false;
     }
+
+    public boolean isItemCell(int x, int y) {
+        int playerX = player.getX();
+        int playerY = player.getY();
+
+        Cell currentCell = getCell(playerX, playerY);
+
+        if (currentCell.getItem() != null) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
