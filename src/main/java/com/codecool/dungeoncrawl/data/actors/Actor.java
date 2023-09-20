@@ -34,9 +34,9 @@ public abstract class Actor implements Drawable {
 
     private void healthDecrease(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if (nextCell.getActor().getHealth() <= 0) {
+        if (nextCell.getActor() != null && nextCell.getActor().getHealth() <= 0) {
             nextCell.setActor(null);
-        } else if (cell.getActor().getHealth() <= 0) {
+        } else if (nextCell.getActor() != null && cell.getActor().getHealth() <= 0) {
             //setImage(new GreenfootImage("Game Over", 48, Color.WHITE, Color.BLACK));
             cell.setActor(null);
         }
