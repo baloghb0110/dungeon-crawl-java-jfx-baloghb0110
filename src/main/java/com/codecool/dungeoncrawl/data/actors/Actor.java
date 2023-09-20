@@ -35,7 +35,6 @@ public abstract class Actor implements Drawable {
         if (nextCell.getActor().getHealth() <= 0) {
             nextCell.setActor(null);
         } else if (cell.getActor().getHealth() <= 0) {
-            //setImage(new GreenfootImage("Game Over", 48, Color.WHITE, Color.BLACK));
             cell.setActor(null);
         }
     }
@@ -47,7 +46,6 @@ public abstract class Actor implements Drawable {
 
         if (currentActor instanceof Player) {
             neighbourActor.setHealth(neighbourActor.getHealth() - currentActor.getDamage());
-            //System.out.println(neighbourActor.getHealth());
             healthDecrease(dx, dy);
 
             if (currentActor.getDefense() < neighbourActor.getDamage()) {
@@ -56,14 +54,6 @@ public abstract class Actor implements Drawable {
                 healthDecrease(dx, dy);
             }
         }
-        /*List<Actor> neighbourActors = cell.getNeighbourMonsters();
-        if (!neighbourActors.isEmpty()) {
-            for (Actor monster : neighbourActors) {
-                //int monsterHealth = monster.getHealth();
-                monster.setHealth(0);
-                //System.out.println(monsterHealth);
-            }
-        }*/
     }
 
     public void setHealth(int health) {
@@ -116,6 +106,8 @@ public abstract class Actor implements Drawable {
 
     public boolean isValidMove(int x, int y){
         Cell nextCell = getCell().getNeighbor(x, y);
-        return nextCell != null && nextCell.getType() == CellType.FLOOR && nextCell.getActor() == null;
+        return nextCell != null &&
+                nextCell.getType() == CellType.FLOOR &&
+                nextCell.getActor() == null;
     }
 }
