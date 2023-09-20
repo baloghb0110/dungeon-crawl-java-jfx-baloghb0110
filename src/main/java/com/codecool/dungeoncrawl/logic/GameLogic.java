@@ -55,7 +55,11 @@ public class GameLogic {
                     return;
 
                 for (Skeleton skeleton : skeletons) {
-                    skeleton.makeRandomMove();
+                    if (isPlayerInRange(map.getPlayer(), skeleton)) {
+                        skeleton.chasePlayer(map.getPlayer());
+                    } else {
+                        skeleton.makeRandomMove();
+                    }
                 }
 
                 ui.refresh();
