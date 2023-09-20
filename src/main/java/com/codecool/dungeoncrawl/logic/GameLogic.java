@@ -74,6 +74,7 @@ public class GameLogic {
             currentCell.setItem(null);
             System.out.println("item removed from map: " + itemName);
         }
+    }
 
     public String getPlayerDamage() {
         return Integer.toString(map.getPlayer().getDamage());

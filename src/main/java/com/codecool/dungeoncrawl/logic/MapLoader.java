@@ -52,7 +52,7 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Key(cell);
                             break;
-                        case 'w':
+                        case 'r':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell);
                             break;
@@ -67,10 +67,6 @@ public class MapLoader {
                         case 'f':
                             cell.setType(CellType.FLOOR);
                             new Fire(cell);
-                            break;
-                        case 'k':
-                            cell.setType(CellType.FLOOR);
-                            new Key(cell);
                             break;
                         case 'w':
                             cell.setType(CellType.FLOOR);

@@ -45,9 +45,10 @@ public abstract class Actor implements Drawable {
     public void attackNeighbouringActor(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         Actor currentActor = cell.getActor();
+
         Actor neighbourActor = nextCell.getActor();
 
-        if (currentActor instanceof Player) {
+        if (nextCell.getActor() != null && currentActor instanceof Player) {
             neighbourActor.setHealth(neighbourActor.getHealth() - currentActor.getDamage());
             //System.out.println(neighbourActor.getHealth());
             healthDecrease(dx, dy);
