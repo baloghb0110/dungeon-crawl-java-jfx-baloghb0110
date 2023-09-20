@@ -3,7 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.Specialities.*;
+import com.codecool.dungeoncrawl.data.specialities.*;
 import com.codecool.dungeoncrawl.data.actors.*;
 
 import java.io.InputStream;
@@ -68,7 +68,7 @@ public class MapLoader {
                             break;
                         case '2':
                             cell.setType(CellType.FLOOR);
-                            new WaterSwitchOff(cell);
+                            new WaterSwitcher(cell);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
