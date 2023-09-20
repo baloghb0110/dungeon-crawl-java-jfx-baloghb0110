@@ -7,7 +7,7 @@ import javafx.scene.input.KeyEvent;
 public class Space implements KeyHandler {
     public static final KeyCode code = KeyCode.SPACE;
 
-    //@Override
+    @Override
     public void perform(KeyEvent event, GameMap map) {
         if (code.equals(event.getCode()))
             map.getPlayer();
