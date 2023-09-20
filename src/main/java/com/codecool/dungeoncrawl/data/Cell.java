@@ -34,7 +34,14 @@ public class Cell implements Drawable {
     }
 
     public Cell getNeighbor(int dx, int dy) {
-        return gameMap.getCell(x + dx, y + dy);
+        int newXCoordinate = x + dx;
+        int newYCoordinate = y + dy;
+
+        if (newXCoordinate > 0 && newXCoordinate < gameMap.getWidth() &&
+                newYCoordinate > 0 && newYCoordinate < gameMap.getHeight()) {
+                return gameMap.getCell(newXCoordinate, newYCoordinate);
+        }
+        return null;
     }
 
     public void setSpeciality(Speciality speciality) {
@@ -48,15 +55,6 @@ public class Cell implements Drawable {
     public boolean hasSpeciality() {
         return speciality != null;
     }
-
-    /*public List<Actor> getNeighbourMonsters() {
-        List<Actor> neighbourMonsters = new ArrayList<>();
-        neighbourMonsters.add(gameMap.getCell(x + 1, y + 1).getActor());
-        neighbourMonsters.add(gameMap.getCell(x - 1, y - 1).getActor());
-        neighbourMonsters.add(gameMap.getCell(x + 1, y - 1).getActor());
-        neighbourMonsters.add(gameMap.getCell(x - 1, y + 1).getActor());
-        return neighbourMonsters;
-    }*/
 
     @Override
     public String getTileName() {
