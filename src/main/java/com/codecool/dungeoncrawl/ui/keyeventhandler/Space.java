@@ -37,7 +37,7 @@ public class Space implements KeyHandler {
     private void checkSpeciality(Cell neighbourCell, GameMap map) {
         if (neighbourCell.getSpeciality().getTileName().equals("waterSwitchOff")) {
             ((WaterSwitcher) neighbourCell.getSpeciality()).setOpened(true);
-            map.findAndOpenWaterGate();
+            map.checkMapForWaterSwitch();
         }
     }
 }

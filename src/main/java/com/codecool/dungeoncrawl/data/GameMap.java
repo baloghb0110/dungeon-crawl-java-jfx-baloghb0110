@@ -1,11 +1,10 @@
 package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Player;
-import com.codecool.dungeoncrawl.data.specialities.Gate;
+import com.codecool.dungeoncrawl.data.specialities.RunningWater;
 import com.codecool.dungeoncrawl.data.specialities.Speciality;
 import com.codecool.dungeoncrawl.data.specialities.Water;
 import com.codecool.dungeoncrawl.data.specialities.WaterGate;
-import com.codecool.dungeoncrawl.logic.Game;
 
 public class GameMap {
     private int width;
@@ -60,26 +59,64 @@ public class GameMap {
         return null;
     }
 
-    public void findAndOpenWaterGate() {
+    public void releaseWater() {
+        int counter = 1;
+        Cell waterGateCell = findOpenedWaterGate();
+        if (waterGateCell != null) {
+            Cell currentCell = waterGateCell.getNeighbor(0, counter);
+
+            while (currentCell != null && !currentCell.getTileName().equals("fire")) {
+                RunningWater runningWater = new RunningWater(currentCell);
+                currentCell.setSpeciality(runningWater);
+
+                currentCell = currentCell.getNeighbor(0, counter);
+                counter++;
+            }
+            if (currentCell != null && currentCell.getTileName().equals("fire")) {
+                do {
+                    currentCell.setSpeciality(null);
+                    currentCell = currentCell.getNeighbor(0, counter);
+                    //counter--;
+                }
+                while (currentCell.getType() == CellType.WALL);
+            }
+
+            //new RunningWater(currentCell);
+        }
+    }
+
+    public void checkMapForWaterSwitch() {
         for (int x = 0; x < getWidth(); x++) {
             for (int y = 0; y < getHeight(); y++) {
                 Cell cell = getCell(x, y);
-                if (cell.hasSpeciality()) {
-                    Speciality speciality = cell.getSpeciality();
-                    if (speciality.getTileName().equals("waterSwitchOn")) {
-                        for (int j = 0; j < getWidth(); j++) {
-                            for (int h = 0; h < getHeight(); h++) {
-                                Cell cell1 = getCell(j, h);
-                                if (cell1.hasSpeciality()) {
-                                    Speciality speciality1 = cell1.getSpeciality();
-                                    if (speciality1.getTileName().equals("waterGateClosed")) {
-                                        ((WaterGate) speciality1).setOpened(true);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                checkIfWaterSwitchOn(cell);
+            }
+        }
+    }
+
+    public void checkIfWaterSwitchOn(Cell cell) {
+        if (cell.hasSpeciality()) {
+            Speciality speciality = cell.getSpeciality();
+            if (speciality.getTileName().equals("waterSwitchOn")) {
+                checkMapForWaterGate();
+            }
+        }
+    }
+
+    public void checkMapForWaterGate() {
+        for (int j = 0; j < getWidth(); j++) {
+            for (int h = 0; h < getHeight(); h++) {
+                Cell cell1 = getCell(j, h);
+                openWaterGate(cell1);
+            }
+        }
+    }
+
+    public void openWaterGate(Cell cell) {
+        if (cell.hasSpeciality()) {
+            Speciality speciality1 = cell.getSpeciality();
+            if (speciality1.getTileName().equals("waterGateClosed")) {
+                ((WaterGate) speciality1).setOpened(true);
             }
         }
     }

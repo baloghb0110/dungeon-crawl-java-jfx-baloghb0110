@@ -69,6 +69,7 @@ public class GameLogic {
                     skeleton.makeRandomMove();
                 }
 
+                map.releaseWater();
                 ui.refresh();
                 lastUpdate = now;
             }
@@ -83,22 +84,6 @@ public class GameLogic {
                 if (actor instanceof Skeleton) {
                     skeletons.add((Skeleton) actor);
                 }
-            }
-        }
-    }
-
-    public void releaseWater() {
-        int counter = -1;
-        Cell waterGateCell = map.findOpenedWaterGate();
-        if (waterGateCell != null) {
-            Cell currentCell = waterGateCell.getNeighbor(0, counter--);
-            new Water(currentCell);
-            if (currentCell.getTileName().equals("fire")) {
-                do {
-                    currentCell.setSpeciality(null);
-                    currentCell = currentCell.getNeighbor(0, counter++);
-                }
-                while (currentCell.getType() == CellType.WALL);
             }
         }
     }
