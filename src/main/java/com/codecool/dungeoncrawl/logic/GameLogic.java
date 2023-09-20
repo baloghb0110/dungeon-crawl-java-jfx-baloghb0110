@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.specialities.Speciality;
 import com.codecool.dungeoncrawl.ui.UI;
 import javafx.animation.AnimationTimer;
 
@@ -39,6 +40,13 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getHealth());
     }
 
+    public String getPlayerDamage() {
+        return Integer.toString(map.getPlayer().getDamage());
+    }
+
+    public String getPlayerDefense() {
+        return Integer.toString(map.getPlayer().getDefense());
+    }
 
     public GameMap getMap() {
         return map;

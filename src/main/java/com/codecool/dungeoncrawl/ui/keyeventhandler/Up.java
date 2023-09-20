@@ -11,5 +11,8 @@ public class Up implements KeyHandler {
     public void perform(KeyEvent event, GameMap map) {
         if(code.equals(event.getCode()) && map.getPlayer().isValidMove(0, -1))
             map.getPlayer().move(0, -1);
+        } else if (code.equals(event.getCode())) {
+            map.getPlayer().attackNeighbouringActor(0, -1);
+        }
     }
 }
