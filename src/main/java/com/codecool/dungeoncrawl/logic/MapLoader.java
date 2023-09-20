@@ -43,11 +43,11 @@ public class MapLoader {
                             map.setPlayer(new Player(cell));
                             break;
                         case 'f':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.WALL);
                             new Fire(cell);
                             break;
                         case 'k':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.WALL);
                             new Key(cell);
                             break;
                         case 'w':
@@ -55,19 +55,19 @@ public class MapLoader {
                             new Water(cell);
                             break;
                         case 'W':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.WALL);
                             new WaterGate(cell);
                             break;
                         case 'g':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.WALL);
                             new Gate(cell);
                             break;
                         case '1':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.WALL);
                             new WaterWall(cell);
                             break;
                         case '2':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.WALL);
                             new WaterSwitcher(cell);
                             break;
                         default:
