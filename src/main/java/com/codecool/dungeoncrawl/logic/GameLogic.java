@@ -66,7 +66,7 @@ public class GameLogic {
             // print inventory
             System.out.println("inventory contents: ");
             for (Item item : inventory.getItems()) {
-                System.out.println(item.getName());
+                System.out.println("- " + item.getName());
             }
 
             // remove item from map
