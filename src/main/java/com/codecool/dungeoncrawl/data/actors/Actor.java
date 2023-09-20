@@ -30,11 +30,17 @@ public abstract class Actor implements Drawable {
         cell = nextCell;
     }
 
-    private void healthDecrease(int dx, int dy) {
+    /*private void decreaseHealth(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell.getActor().getHealth() <= 0) {
             nextCell.setActor(null);
         } else if (cell.getActor().getHealth() <= 0) {
+            cell.setActor(null);
+        }
+    }*/
+
+    private void checkIfAlive() {
+        if (cell.getActor().getHealth() <= 0) {
             cell.setActor(null);
         }
     }
@@ -46,12 +52,12 @@ public abstract class Actor implements Drawable {
 
         if (currentActor instanceof Player) {
             neighbourActor.setHealth(neighbourActor.getHealth() - currentActor.getDamage());
-            healthDecrease(dx, dy);
+            checkIfAlive();
 
             if (currentActor.getDefense() < neighbourActor.getDamage()) {
                 currentActor.setHealth(currentActor.getHealth() -
                         (neighbourActor.getDamage() - currentActor.getDefense()));
-                healthDecrease(dx, dy);
+                checkIfAlive();
             }
         }
     }
