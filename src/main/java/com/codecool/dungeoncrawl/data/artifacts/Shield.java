@@ -1,19 +1,19 @@
-package com.codecool.dungeoncrawl.data.customitems;
+package com.codecool.dungeoncrawl.data.artifacts;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.artifacts.Item;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 
-public class Portal extends Item {
+public class Shield extends Item {
+
     private GameLogic logic;
 
-    public Portal(Cell cell) {
-        super(cell, "portal");
+    public Shield(Cell cell) {
+        super(cell, "shield");
     }
 
     @Override
     public String getTileName() {
-        return "portal";
+        return "shield";
     }
 
     @Override
@@ -22,5 +22,6 @@ public class Portal extends Item {
             logic = GameLogic.getInstance();
         }
         logic.addItemToInventory();
+        logic.increaseDefense(3);
     }
 }

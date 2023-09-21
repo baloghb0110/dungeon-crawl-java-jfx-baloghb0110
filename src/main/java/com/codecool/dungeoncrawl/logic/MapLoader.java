@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.data.actors.Cica;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.artifacts.Key;
+import com.codecool.dungeoncrawl.data.artifacts.Shield;
 import com.codecool.dungeoncrawl.data.customitems.Life;
 import com.codecool.dungeoncrawl.data.customitems.Portal;
 import com.codecool.dungeoncrawl.data.artifacts.Sword;
@@ -59,6 +60,10 @@ public class MapLoader {
                         case 'r':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell);
+                            break;
+                        case 'd':
+                            cell.setType(CellType.FLOOR);
+                            new Shield(cell);
                             break;
                         case 'p':
                             cell.setType(CellType.FLOOR);
