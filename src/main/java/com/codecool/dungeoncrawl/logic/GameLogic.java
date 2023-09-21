@@ -64,11 +64,9 @@ public class GameLogic {
     }
 
 
-    public void increaseHealth() {
+    public void increaseHealth(int healthBoost) {
         int currentHealth = getPlayerHealthLevel();
-        System.out.println("current HP: " + currentHealth);
-        currentHealth += 4;
-        System.out.println("current HP: " + currentHealth);
+        currentHealth += healthBoost;
         map.getPlayer().setHealth(currentHealth);
     }
 
@@ -132,7 +130,7 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getDamage());
     }
 
-    public String getPlayerDefense() {
+    public String getPlayerDefenseLabel() {
         return Integer.toString(map.getPlayer().getDefense());
     }
 

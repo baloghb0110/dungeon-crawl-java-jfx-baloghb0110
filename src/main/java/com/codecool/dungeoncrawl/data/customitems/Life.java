@@ -22,7 +22,7 @@ public class Life extends Item {
         if (logic == null) {
             logic = GameLogic.getInstance();
         }
-        logic.increaseHealth();
+        logic.increaseHealth(4);
         logic.removeItemFromMap();
     }
 }
