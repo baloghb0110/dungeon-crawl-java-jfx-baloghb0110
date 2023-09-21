@@ -1,9 +1,14 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.specialities.Gate;
+import com.codecool.dungeoncrawl.data.specialities.Speciality;
+import com.codecool.dungeoncrawl.data.specialities.Water;
+import com.codecool.dungeoncrawl.data.specialities.WaterSwitcher;
 import com.codecool.dungeoncrawl.data.artifacts.Inventory;
 import com.codecool.dungeoncrawl.data.artifacts.Item;
 import com.codecool.dungeoncrawl.ui.UI;
@@ -185,6 +190,7 @@ public class GameLogic {
                     }
                 }
 
+                map.releaseWater();
                 ui.refresh();
                 lastUpdate = now;
             }

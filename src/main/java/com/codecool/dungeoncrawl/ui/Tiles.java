@@ -34,11 +34,14 @@ public class Tiles {
         tileMap.put("portal", new Tile(10, 10));
         tileMap.put("fire", new Tile(15, 10));
         tileMap.put("water", new Tile(12, 4));
-        tileMap.put("waterGate", new Tile(0, 9));
+        tileMap.put("waterGateClosed", new Tile(0, 9));
+        tileMap.put("waterGateOpen", new Tile(2, 9));
         tileMap.put("waterWall", new Tile(2, 11));
         tileMap.put("runningWater", new Tile(8, 4));
         tileMap.put("waterSwitchOn", new Tile(4, 10));
         tileMap.put("waterSwitchOff", new Tile(3, 10));
+        tileMap.put("gateOff", new Tile(9, 11));
+        tileMap.put("gateOn", new Tile(8, 10));
         tileMap.put("gate", new Tile(9, 11));
         tileMap.put("life", new Tile(23, 23));
         tileMap.put("shield", new Tile(5, 24));
