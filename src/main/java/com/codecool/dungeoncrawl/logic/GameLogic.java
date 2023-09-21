@@ -1,14 +1,9 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
-import com.codecool.dungeoncrawl.data.specialities.Gate;
-import com.codecool.dungeoncrawl.data.specialities.Speciality;
-import com.codecool.dungeoncrawl.data.specialities.Water;
-import com.codecool.dungeoncrawl.data.specialities.WaterSwitcher;
 import com.codecool.dungeoncrawl.data.artifacts.Inventory;
 import com.codecool.dungeoncrawl.data.artifacts.Item;
 import com.codecool.dungeoncrawl.ui.UI;
@@ -25,7 +20,7 @@ public class GameLogic {
     private Inventory inventory;
 
     GameLogic() {
-        this.map = MapLoader.loadMap();
+        this.map = MapLoader.loadMap("/map.txt");
         this.inventory = map.getPlayer().getInventory();
     }
 
@@ -59,16 +54,20 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getHealth());
     }
 
-
-    private boolean levelEnd;
+    private boolean levelEnd = false;
 
     public void setLevelEnd() {
-        boolean hasKey;
         List<Item> items = inventory.getItems();
 
         if (inventory.playerHasKey()) {
+            levelEnd = true;
             System.out.println("level cleared");
+            this.map = MapLoader.loadMap("/level-2-map.txt");
         }
+    }
+
+    public boolean getLevelEnd() {
+        return levelEnd;
     }
 
     public int getPlayerHealth() {
