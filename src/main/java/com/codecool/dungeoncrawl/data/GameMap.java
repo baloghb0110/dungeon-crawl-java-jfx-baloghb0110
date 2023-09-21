@@ -132,7 +132,7 @@ public class GameMap {
         }
     }
 
-    public List<Skeleton> getSkeletonList(){
+    public List<Skeleton> getSkeletonList() {
         return new ArrayList<>(skeletonList);
     }
 }

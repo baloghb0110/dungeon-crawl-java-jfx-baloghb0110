@@ -66,9 +66,7 @@ public class GameLogic {
         boolean hasKey;
         List<Item> items = inventory.getItems();
 
-        hasKey = items.stream().anyMatch(item -> item.getName().equals("key"));
-
-        if (hasKey) {
+        if (inventory.playerHasKey()) {
             System.out.println("level cleared");
         }
     }
