@@ -5,9 +5,8 @@ import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
-import com.codecool.dungeoncrawl.data.items.Inventory;
-import com.codecool.dungeoncrawl.data.items.Item;
-import com.codecool.dungeoncrawl.data.specialities.Speciality;
+import com.codecool.dungeoncrawl.data.artifacts.Inventory;
+import com.codecool.dungeoncrawl.data.artifacts.Item;
 import com.codecool.dungeoncrawl.ui.UI;
 import javafx.animation.AnimationTimer;
 
@@ -15,16 +14,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameLogic {
+    private static GameLogic instance;
     private GameMap map;
+    private Player player;
+    private Cell currentCell;
     private List<Skeleton> skeletons;
     private Inventory inventory;
 
-    public GameLogic() {
+    GameLogic() {
         this.map = MapLoader.loadMap();
         this.skeletons = new ArrayList<>();
         this.inventory = new Inventory();
         findSkeletons();
     }
+
+    public static GameLogic getInstance() {
+        if (instance == null) {
+            instance = new GameLogic();
+        }
+        return instance;
+    }
+
 
     public double getMapWidth() {
         return map.getWidth();
@@ -41,6 +51,10 @@ public class GameLogic {
         return map.getCell(x, y);
     }
 
+    public Cell getCurrentCell() {
+        return currentCell;
+    }
+
     public String getPlayerHealth() {
         return Integer.toString(map.getPlayer().getHealth());
     }
@@ -49,32 +63,55 @@ public class GameLogic {
         return inventory;
     }
 
-    public void addItemToInventory() {
+    public void updateCurrentCell() {
         int playerX = map.getPlayer().getX();
         int playerY = map.getPlayer().getY();
+        this.currentCell = map.getCell(playerX, playerY);
+    }
 
-        Cell currentCell = map.getCell(playerX, playerY);
+    public void addItemToInventory() {
+        updateCurrentCell();
 
         if (currentCell.getItem() != null) {
             System.out.println("item found");
 
             String itemName = currentCell.getItem().getName();
 
-            // add to inventory
-            inventory.addItem(currentCell.getItem());
-
-            System.out.println("item added to inventory: " + itemName);
-
-            // print inventory
-            System.out.println("inventory contents: ");
-            for (Item item : inventory.getItems()) {
-                System.out.println("- " + item.getName());
+            if (!itemName.equals("life")) {
+                addItemToInventoryHelper(itemName);
             }
 
-            // remove item from map
-            currentCell.setItem(null);
-            System.out.println("item removed from map: " + itemName);
+            if (itemName.equals("life")) {
+                System.out.println("why are we in this method in the first place?");;
+            }
+
+            removeItemFromMap(itemName);
         }
+    }
+
+    private void addItemToInventoryHelper(String itemName) {
+        inventory.addItem(currentCell.getItem());
+
+        System.out.println("item added to inventory: " + itemName);
+
+        printInventory();
+
+    }
+
+    private void printInventory() {
+        System.out.println("inventory contents: ");
+        for (Item item : inventory.getItems()) {
+            System.out.println("- " + item.getName());
+        }
+    }
+
+    private void removeItemFromMap(String itemName) {
+        currentCell.setItem(null);
+        System.out.println("item removed from map: " + itemName);
+    }
+
+    public void removeItemFromMap() {
+        currentCell.setItem(null);
     }
 
     public String getPlayerDamage() {

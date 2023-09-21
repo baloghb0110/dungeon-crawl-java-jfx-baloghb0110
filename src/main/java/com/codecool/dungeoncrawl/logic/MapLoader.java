@@ -6,11 +6,11 @@ import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Cica;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
-import com.codecool.dungeoncrawl.data.items.Key;
-import com.codecool.dungeoncrawl.data.items.Portal;
-import com.codecool.dungeoncrawl.data.items.Sword;
+import com.codecool.dungeoncrawl.data.artifacts.Key;
+import com.codecool.dungeoncrawl.data.customitems.Life;
+import com.codecool.dungeoncrawl.data.customitems.Portal;
+import com.codecool.dungeoncrawl.data.artifacts.Sword;
 import com.codecool.dungeoncrawl.data.specialities.*;
-import com.codecool.dungeoncrawl.data.actors.*;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -47,6 +47,10 @@ public class MapLoader {
                         case 'c':
                             cell.setType(CellType.FLOOR);
                             new Cica(cell);
+                            break;
+                        case 'l':
+                            cell.setType(CellType.FLOOR);
+                            new Life(cell);
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);

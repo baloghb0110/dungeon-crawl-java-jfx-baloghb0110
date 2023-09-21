@@ -20,7 +20,7 @@ public class StatusPane {
         ui = new GridPane();
         healthTextLabel = new Label("Health: ");
         healthValueLabel = new Label();
-        damageTextLabel = new Label("Damage: ");
+        damageTextLabel = new Label("Attack: ");
         damageValueLabel = new Label();
         defenseTextLabel = new Label("Defense: ");
         defenseValueLabel = new Label();
