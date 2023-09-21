@@ -57,7 +57,7 @@ public class MapLoader {
                             new Life(cell);
                             break;
                         case 'k':
-                            cell.setType(CellType.WALL);
+                            cell.setType(CellType.FLOOR);
                             new Key(cell);
                             break;
                         case 'r':
@@ -76,10 +76,10 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
-                        case 'f':
-                            cell.setType(CellType.FLOOR);
-                            new Fire(cell);
-                            break;
+//                        case 'f':
+//                            cell.setType(CellType.FLOOR);
+//                            new Fire(cell);
+//                            break;
                         case 'w':
                             cell.setType(CellType.FLOOR);
                             new Water(cell);

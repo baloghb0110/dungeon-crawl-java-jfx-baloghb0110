@@ -14,6 +14,8 @@ import com.codecool.dungeoncrawl.data.artifacts.Item;
 import com.codecool.dungeoncrawl.ui.UI;
 import javafx.animation.AnimationTimer;
 
+import java.util.List;
+
 
 public class GameLogic {
     private static GameLogic instance;
@@ -64,9 +66,7 @@ public class GameLogic {
         boolean hasKey;
         List<Item> items = inventory.getItems();
 
-        hasKey = items.stream().anyMatch(item -> item.getName().equals("key"));
-
-        if (hasKey) {
+        if (inventory.playerHasKey()) {
             System.out.println("level cleared");
         }
     }

@@ -37,7 +37,7 @@ public abstract class Actor implements Drawable {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell.getActor() != null && nextCell.getActor().getHealth() <= 0) {
             nextCell.setActor(null);
-        } else if (cell.getActor().getHealth() <= 0) {
+        } else if (cell.getActor() != null && cell.getActor().getHealth() <= 0) {
             cell.setActor(null);
         }
     }
