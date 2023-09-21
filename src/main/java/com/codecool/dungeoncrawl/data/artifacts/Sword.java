@@ -22,5 +22,6 @@ public class Sword extends Item {
             logic = GameLogic.getInstance();
         }
         logic.addItemToInventory();
+        logic.increaseAttack(2);
     }
 }

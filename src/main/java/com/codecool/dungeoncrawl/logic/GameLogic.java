@@ -59,15 +59,19 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getHealth());
     }
 
-    public int getPlayerHealthLevel() {
+    public int getPlayerHealth() {
         return map.getPlayer().getHealth();
     }
 
 
     public void increaseHealth(int healthBoost) {
-        int currentHealth = getPlayerHealthLevel();
-        currentHealth += healthBoost;
-        map.getPlayer().setHealth(currentHealth);
+        int currentHealth = getPlayerHealth();
+        map.getPlayer().setHealth(currentHealth+healthBoost);
+    }
+
+    public void increaseAttack(int atkBoost) {
+        int currentAtk = getPlayerAttack();
+        map.getPlayer().setDamage(currentAtk+atkBoost);
     }
 
     public Inventory getInventory() {
@@ -128,6 +132,10 @@ public class GameLogic {
 
     public String getPlayerAttackLabel() {
         return Integer.toString(map.getPlayer().getDamage());
+    }
+
+    public int getPlayerAttack() {
+        return map.getPlayer().getDamage();
     }
 
     public String getPlayerDefenseLabel() {
