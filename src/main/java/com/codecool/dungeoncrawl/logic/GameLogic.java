@@ -151,6 +151,16 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getDefense());
     }
 
+    public String getPlayerInventoryLabel() {
+        List<Item> items = map.getPlayer().getInventory().getItems();
+        StringBuilder inv = new StringBuilder();
+        for (Item item :
+                items) {
+            inv.append("- ").append(item.getName()).append("\n");
+        }
+        return inv.toString();
+    }
+
     public int getPlayerDefense() {
         return map.getPlayer().getDefense();
     }

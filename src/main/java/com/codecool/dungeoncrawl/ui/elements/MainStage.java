@@ -37,4 +37,8 @@ public class MainStage {
     public void setDefenseLabelText(String text) {
         this.statusPane.setDefenseValue(text);
     }
+
+    public void setInventoryLabelText(String text) {
+        this.statusPane.setInventoryValue(text);
+    }
 }
