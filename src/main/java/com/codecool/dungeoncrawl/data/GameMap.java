@@ -3,8 +3,6 @@ package com.codecool.dungeoncrawl.data;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
-import com.codecool.dungeoncrawl.data.items.Inventory;
-import com.codecool.dungeoncrawl.logic.Game;
 
 import java.util.ArrayList;
 import java.util.List;
