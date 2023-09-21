@@ -52,12 +52,13 @@ public class MapLoader {
                         case 'f':
                             cell.setType(CellType.WALL);
                             new Fire(cell);
+                            break;
                         case 'l':
                             cell.setType(CellType.FLOOR);
                             new Life(cell);
                             break;
                         case 'k':
-                            cell.setType(CellType.WALL);
+                            cell.setType(CellType.FLOOR);
                             new Key(cell);
                             break;
                         case 'r':
@@ -75,10 +76,6 @@ public class MapLoader {
                         case '@':
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
-                            break;
-                        case 'f':
-                            cell.setType(CellType.FLOOR);
-                            new Fire(cell);
                             break;
                         case 'w':
                             cell.setType(CellType.FLOOR);

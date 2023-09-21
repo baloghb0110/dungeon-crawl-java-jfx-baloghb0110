@@ -117,6 +117,7 @@ public class GameMap {
                 ((WaterGate) speciality).setOpened(true);
             }
         }
+    }
 
     public void findSkeletons() {
         skeletonList = new ArrayList<>();
