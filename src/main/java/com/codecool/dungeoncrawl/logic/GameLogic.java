@@ -93,17 +93,10 @@ public class GameLogic {
         updateCurrentCell();
 
         if (currentCell.getItem() != null) {
-            System.out.println("item found");
-
             String itemName = currentCell.getItem().getName();
 
             if (!itemName.equals("life")) {
                 addItemToInventoryHelper(itemName);
-            }
-
-            if (itemName.equals("life")) {
-                System.out.println("why are we in this method in the first place?");
-                ;
             }
 
             removeItemFromMap(itemName);
