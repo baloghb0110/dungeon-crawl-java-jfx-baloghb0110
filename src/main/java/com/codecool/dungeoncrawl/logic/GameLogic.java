@@ -2,7 +2,6 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.items.Inventory;
@@ -11,19 +10,14 @@ import com.codecool.dungeoncrawl.data.specialities.Speciality;
 import com.codecool.dungeoncrawl.ui.UI;
 import javafx.animation.AnimationTimer;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameLogic {
     private GameMap map;
-    private List<Skeleton> skeletons;
     private Inventory inventory;
 
     public GameLogic() {
         this.map = MapLoader.loadMap();
-        this.skeletons = new ArrayList<>();
         this.inventory = new Inventory();
-        findSkeletons();
     }
 
     public double getMapWidth() {
@@ -97,8 +91,8 @@ public class GameLogic {
             public void handle(long now) {
                 double elapsedSeconds = (now - lastUpdate) / 1_000_000_000.0;
                 if (elapsedSeconds < 1) return;
-
-                for (Skeleton skeleton : skeletons) {
+                map.findSkeletons();
+                for (Skeleton skeleton : getMap().getSkeletonList()) {
                     if (isPlayerInRange(map.getPlayer(), skeleton)) {
                         skeleton.chasePlayer(map.getPlayer());
                     } else {
@@ -110,18 +104,6 @@ public class GameLogic {
                 lastUpdate = now;
             }
         }.start();
-    }
-
-    private void findSkeletons() {
-        for (int x = 0; x < map.getWidth(); x++) {
-            for (int y = 0; y < map.getHeight(); y++) {
-                Cell cell = map.getCell(x, y);
-                Actor actor = cell.getActor();
-                if (actor instanceof Skeleton) {
-                    skeletons.add((Skeleton) actor);
-                }
-            }
-        }
     }
 
     private boolean isPlayerInRange(Player player, Skeleton skeleton) {
