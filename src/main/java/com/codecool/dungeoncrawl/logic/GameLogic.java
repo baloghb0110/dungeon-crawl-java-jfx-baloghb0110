@@ -24,7 +24,7 @@ public class GameLogic {
     GameLogic() {
         this.map = MapLoader.loadMap();
         this.skeletons = new ArrayList<>();
-        this.inventory = new Inventory();
+        this.inventory = map.getPlayer().getInventory();
         findSkeletons();
     }
 
@@ -59,6 +59,20 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getHealth());
     }
 
+
+    private boolean levelEnd;
+
+    public void setLevelEnd() {
+        boolean hasKey;
+        List<Item> items = inventory.getItems();
+
+        hasKey = items.stream().anyMatch(item -> item.getName().equals("key"));
+
+        if (hasKey) {
+            System.out.println("level cleared");
+        }
+    }
+
     public int getPlayerHealth() {
         return map.getPlayer().getHealth();
     }
@@ -79,9 +93,6 @@ public class GameLogic {
         map.getPlayer().setDefense(currentDef + defBoost);
     }
 
-    public Inventory getInventory() {
-        return inventory;
-    }
 
     public void updateCurrentCell() {
         int playerX = map.getPlayer().getX();
