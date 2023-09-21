@@ -55,8 +55,21 @@ public class GameLogic {
         return currentCell;
     }
 
-    public String getPlayerHealth() {
+    public String getPlayerHealthLabel() {
         return Integer.toString(map.getPlayer().getHealth());
+    }
+
+    public int getPlayerHealthLevel() {
+        return map.getPlayer().getHealth();
+    }
+
+
+    public void increaseHealth() {
+        int currentHealth = getPlayerHealthLevel();
+        System.out.println("current HP: " + currentHealth);
+        currentHealth += 4;
+        System.out.println("current HP: " + currentHealth);
+        map.getPlayer().setHealth(currentHealth);
     }
 
     public Inventory getInventory() {
@@ -82,7 +95,8 @@ public class GameLogic {
             }
 
             if (itemName.equals("life")) {
-                System.out.println("why are we in this method in the first place?");;
+                System.out.println("why are we in this method in the first place?");
+                ;
             }
 
             removeItemFromMap(itemName);
@@ -114,7 +128,7 @@ public class GameLogic {
         currentCell.setItem(null);
     }
 
-    public String getPlayerDamage() {
+    public String getPlayerAttackLabel() {
         return Integer.toString(map.getPlayer().getDamage());
     }
 
