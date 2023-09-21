@@ -2,7 +2,6 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.artifacts.Inventory;
@@ -10,22 +9,17 @@ import com.codecool.dungeoncrawl.data.artifacts.Item;
 import com.codecool.dungeoncrawl.ui.UI;
 import javafx.animation.AnimationTimer;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameLogic {
     private static GameLogic instance;
     private GameMap map;
     private Player player;
     private Cell currentCell;
-    private List<Skeleton> skeletons;
     private Inventory inventory;
 
     GameLogic() {
         this.map = MapLoader.loadMap();
-        this.skeletons = new ArrayList<>();
         this.inventory = map.getPlayer().getInventory();
-        findSkeletons();
     }
 
     public static GameLogic getInstance() {
@@ -34,7 +28,6 @@ public class GameLogic {
         }
         return instance;
     }
-
 
     public double getMapWidth() {
         return map.getWidth();
@@ -167,9 +160,19 @@ public class GameLogic {
             public void handle(long now) {
                 double elapsedSeconds = (now - lastUpdate) / 1_000_000_000.0;
                 if (elapsedSeconds < 1) return;
+                if(map.getPlayer().getHealth() <= 0) {
+                    GameOverScreen.display("Game Over!");
+                    this.stop();
+                }
 
-                for (Skeleton skeleton : skeletons) {
-                    skeleton.makeRandomMove();
+                map.findSkeletons();
+
+                for (Skeleton skeleton : getMap().getSkeletonList()) {
+                    if (isPlayerInRange(map.getPlayer(), skeleton)) {
+                        skeleton.chasePlayer(map.getPlayer());
+                    } else {
+                        skeleton.makeRandomMove();
+                    }
                 }
 
                 ui.refresh();
@@ -178,15 +181,12 @@ public class GameLogic {
         }.start();
     }
 
-    private void findSkeletons() {
-        for (int x = 0; x < map.getWidth(); x++) {
-            for (int y = 0; y < map.getHeight(); y++) {
-                Cell cell = map.getCell(x, y);
-                Actor actor = cell.getActor();
-                if (actor instanceof Skeleton) {
-                    skeletons.add((Skeleton) actor);
-                }
-            }
-        }
+    private boolean isPlayerInRange(Player player, Skeleton skeleton) {
+        int dx = Math.abs(player.getX() - skeleton.getX());
+        int dy = Math.abs(player.getY() - skeleton.getY());
+
+        int chaseRange = 5;
+
+        return dx <= chaseRange && dy <= chaseRange;
     }
 }

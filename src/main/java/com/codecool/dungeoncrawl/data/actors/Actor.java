@@ -9,12 +9,13 @@ import java.util.Random;
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
+  
+    private static final int[] DX = {0, -1, 1};
+    private static final int[] DY = {-1, 1, 0};
+ 
     private int damage = 3;
     private int defense = 1;
 
-    private static final int NUM_DIRECTIONS = 4;
-    private static final int[] DX = {0, 0, -1, 1};
-    private static final int[] DY = {-1, 1, 0, 0};
     private Random random;
 
     public Actor(Cell cell) {
@@ -96,8 +97,8 @@ public abstract class Actor implements Drawable {
     }
 
     public void makeRandomMove(){
-        int randomDirectionX = random.nextInt(NUM_DIRECTIONS);
-        int randomDirectionY = random.nextInt(NUM_DIRECTIONS);
+        int randomDirectionX = random.nextInt(DX.length);
+        int randomDirectionY = random.nextInt(DY.length);
 
         int dx = DX[randomDirectionX];
         int dy = DY[randomDirectionY];
