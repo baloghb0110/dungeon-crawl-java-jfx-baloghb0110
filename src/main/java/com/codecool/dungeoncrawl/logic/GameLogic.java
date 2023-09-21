@@ -29,7 +29,6 @@ public class GameLogic {
         return instance;
     }
 
-
     public double getMapWidth() {
         return map.getWidth();
     }
@@ -128,7 +127,13 @@ public class GameLogic {
             public void handle(long now) {
                 double elapsedSeconds = (now - lastUpdate) / 1_000_000_000.0;
                 if (elapsedSeconds < 1) return;
+                if(map.getPlayer().getHealth() <= 0) {
+                    GameOverScreen.display("Game Over!");
+                    this.stop();
+                }
+
                 map.findSkeletons();
+
                 for (Skeleton skeleton : getMap().getSkeletonList()) {
                     if (isPlayerInRange(map.getPlayer(), skeleton)) {
                         skeleton.chasePlayer(map.getPlayer());
