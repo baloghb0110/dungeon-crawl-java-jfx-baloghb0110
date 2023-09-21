@@ -63,25 +63,17 @@ public class GameMap {
         int counter = 1;
         Cell waterGateCell = findOpenedWaterGate();
         if (waterGateCell != null) {
-            Cell currentCell = waterGateCell.getNeighbor(0, counter);
-
-            while (currentCell != null && !currentCell.getTileName().equals("fire")) {
-                RunningWater runningWater = new RunningWater(currentCell);
-                currentCell.setSpeciality(runningWater);
-
-                currentCell = currentCell.getNeighbor(0, counter);
-                counter++;
+            Cell currentCell;
+            do {
+                currentCell = waterGateCell.getNeighbor(0, counter++);
+                new RunningWater(currentCell);
             }
-            if (currentCell != null && currentCell.getTileName().equals("fire")) {
-                do {
-                    currentCell.setSpeciality(null);
-                    currentCell = currentCell.getNeighbor(0, counter);
-                    //counter--;
-                }
-                while (currentCell.getType() == CellType.WALL);
-            }
+            while (currentCell.getNeighbor(0, 1).getTileName().equals("floor"));
+            Cell downNeighbourCell = currentCell.getNeighbor(0, 1);
 
-            //new RunningWater(currentCell);
+            downNeighbourCell.setType(CellType.FLOOR);
+            downNeighbourCell.setSpeciality(null);
+            ((WaterGate) waterGateCell.getSpeciality()).setOpened(false);
         }
     }
 
@@ -94,7 +86,7 @@ public class GameMap {
         }
     }
 
-    public void checkIfWaterSwitchOn(Cell cell) {
+    private void checkIfWaterSwitchOn(Cell cell) {
         if (cell.hasSpeciality()) {
             Speciality speciality = cell.getSpeciality();
             if (speciality.getTileName().equals("waterSwitchOn")) {
@@ -103,7 +95,7 @@ public class GameMap {
         }
     }
 
-    public void checkMapForWaterGate() {
+    private void checkMapForWaterGate() {
         for (int j = 0; j < getWidth(); j++) {
             for (int h = 0; h < getHeight(); h++) {
                 Cell cell1 = getCell(j, h);
@@ -112,11 +104,11 @@ public class GameMap {
         }
     }
 
-    public void openWaterGate(Cell cell) {
+    private void openWaterGate(Cell cell) {
         if (cell.hasSpeciality()) {
-            Speciality speciality1 = cell.getSpeciality();
-            if (speciality1.getTileName().equals("waterGateClosed")) {
-                ((WaterGate) speciality1).setOpened(true);
+            Speciality speciality = cell.getSpeciality();
+            if (speciality.getTileName().equals("waterGateClosed")) {
+                ((WaterGate) speciality).setOpened(true);
             }
         }
     }
