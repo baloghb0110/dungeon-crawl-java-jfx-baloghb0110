@@ -1,21 +1,27 @@
 package com.codecool.dungeoncrawl.data;
 
+import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.specialities.RunningWater;
 import com.codecool.dungeoncrawl.data.specialities.Speciality;
 import com.codecool.dungeoncrawl.data.specialities.Water;
 import com.codecool.dungeoncrawl.data.specialities.WaterGate;
+import com.codecool.dungeoncrawl.data.actors.Skeleton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameMap {
     private int width;
     private int height;
     private Cell[][] cells;
-
+    private List<Skeleton> skeletonList;
     private Player player;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
         this.height = height;
+        this.skeletonList = new ArrayList<>();
         cells = new Cell[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -111,5 +117,21 @@ public class GameMap {
                 ((WaterGate) speciality).setOpened(true);
             }
         }
+
+    public void findSkeletons() {
+        skeletonList = new ArrayList<>();
+        for (int x = 0; x < this.getWidth(); x++) {
+            for (int y = 0; y < this.getHeight(); y++) {
+                Cell cell = this.getCell(x, y);
+                Actor actor = cell.getActor();
+                if (actor instanceof Skeleton) {
+                    skeletonList.add((Skeleton) actor);
+                }
+            }
+        }
+    }
+
+    public List<Skeleton> getSkeletonList(){
+        return new ArrayList<>(skeletonList);
     }
 }

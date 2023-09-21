@@ -9,12 +9,13 @@ import java.util.Random;
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
+  
+    private static final int[] DX = {0, -1, 1};
+    private static final int[] DY = {-1, 1, 0};
+ 
     private int damage = 3;
     private int defense = 1;
 
-    private static final int NUM_DIRECTIONS = 4;
-    private static final int[] DX = {0, 0, -1, 1};
-    private static final int[] DY = {-1, 1, 0, 0};
     private Random random;
 
     public Actor(Cell cell) {
@@ -28,16 +29,18 @@ public abstract class Actor implements Drawable {
         cell.setActor(null);
         nextCell.setActor(this);
         cell = nextCell;
+
     }
 
-    /*private void decreaseHealth(int dx, int dy) {
+
+    private void removeDeadActor(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if (nextCell.getActor().getHealth() <= 0) {
+        if (nextCell.getActor() != null && nextCell.getActor().getHealth() <= 0) {
             nextCell.setActor(null);
         } else if (cell.getActor().getHealth() <= 0) {
             cell.setActor(null);
         }
-    }*/
+    }
 
     private void checkIfAlive() {
         if (cell.getActor().getHealth() <= 0) {
@@ -48,16 +51,20 @@ public abstract class Actor implements Drawable {
     public void attackNeighbouringActor(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         Actor currentActor = cell.getActor();
+
         Actor neighbourActor = nextCell.getActor();
 
-        if (currentActor instanceof Player) {
+        if (nextCell.getActor() != null && currentActor instanceof Player) {
             neighbourActor.setHealth(neighbourActor.getHealth() - currentActor.getDamage());
+
             checkIfAlive();
+            removeDeadActor(dx, dy);
 
             if (currentActor.getDefense() < neighbourActor.getDamage()) {
                 currentActor.setHealth(currentActor.getHealth() -
                         (neighbourActor.getDamage() - currentActor.getDefense()));
                 checkIfAlive();
+                removeDeadActor(dx, dy);
             }
         }
     }
@@ -99,8 +106,8 @@ public abstract class Actor implements Drawable {
     }
 
     public void makeRandomMove(){
-        int randomDirectionX = random.nextInt(NUM_DIRECTIONS);
-        int randomDirectionY = random.nextInt(NUM_DIRECTIONS);
+        int randomDirectionX = random.nextInt(DX.length);
+        int randomDirectionY = random.nextInt(DY.length);
 
         int dx = DX[randomDirectionX];
         int dy = DY[randomDirectionY];

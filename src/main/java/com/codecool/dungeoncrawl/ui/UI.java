@@ -16,7 +16,6 @@ import java.util.Set;
 public class UI {
     private Canvas canvas;
     private GraphicsContext context;
-
     private MainStage mainStage;
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
@@ -45,6 +44,14 @@ public class UI {
             keyHandler.perform(keyEvent, logic.getMap());
         }
         refresh();
+
+        // check for item actions
+        logic.updateCurrentCell();
+        Cell currentCell = logic.getCurrentCell();
+        if (currentCell.getItem() != null) {
+            currentCell.getItem().action(logic);
+        }
+
     }
 
     public void refresh() {
@@ -55,6 +62,8 @@ public class UI {
                 Cell cell = logic.getCell(x, y);
                 if (cell.getActor() != null) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
+                } else if (cell.getItem() != null) {
+                    Tiles.drawTile(context, cell.getItem(), x, y);
                 } else if (cell.hasSpeciality()) {
                     Tiles.drawTile(context, cell.getSpeciality(), x, y);
                 } else {
@@ -62,8 +71,9 @@ public class UI {
                 }
             }
         }
-        mainStage.setHealthLabelText(logic.getPlayerHealth());
-        mainStage.setDamageLabelText(logic.getPlayerDamage());
-        mainStage.setDefenseLabelText(logic.getPlayerDefense());
+        mainStage.setHealthLabelText(logic.getPlayerHealthLabel());
+        mainStage.setDamageLabelText(logic.getPlayerAttackLabel());
+        mainStage.setDefenseLabelText(logic.getPlayerDefenseLabel());
+        mainStage.setInventoryLabelText(logic.getPlayerInventoryLabel());
     }
 }

@@ -26,10 +26,13 @@ public class Tiles {
         tileMap.put("empty", new Tile(0, 0));
         tileMap.put("wall", new Tile(10, 17));
         tileMap.put("floor", new Tile(2, 0));
-        tileMap.put("player", new Tile(27, 0));
+        tileMap.put("player", new Tile(31, 0));
         tileMap.put("skeleton", new Tile(29, 6));
-        tileMap.put("fire", new Tile(15, 10));
+        tileMap.put("cica", new Tile(30, 7));
         tileMap.put("key", new Tile(16, 23));
+        tileMap.put("sword", new Tile(1, 28));
+        tileMap.put("portal", new Tile(10, 10));
+        tileMap.put("fire", new Tile(15, 10));
         tileMap.put("water", new Tile(12, 4));
         tileMap.put("waterGateClosed", new Tile(0, 9));
         tileMap.put("waterGateOpen", new Tile(2, 9));
@@ -39,9 +42,13 @@ public class Tiles {
         tileMap.put("waterSwitchOff", new Tile(3, 10));
         tileMap.put("gateOff", new Tile(9, 11));
         tileMap.put("gateOn", new Tile(8, 10));
+        tileMap.put("gate", new Tile(9, 11));
+        tileMap.put("life", new Tile(23, 23));
+        tileMap.put("shield", new Tile(5, 24));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
+
         Tile tile = tileMap.get(d.getTileName());
         context.drawImage(tileset, tile.x, tile.y, tile.w, tile.h,
                 x * TILE_WIDTH, y * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH);

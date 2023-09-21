@@ -3,8 +3,15 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Cica;
+import com.codecool.dungeoncrawl.data.actors.Player;
+import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.artifacts.Key;
+import com.codecool.dungeoncrawl.data.artifacts.Shield;
+import com.codecool.dungeoncrawl.data.customitems.Life;
+import com.codecool.dungeoncrawl.data.customitems.Portal;
+import com.codecool.dungeoncrawl.data.artifacts.Sword;
 import com.codecool.dungeoncrawl.data.specialities.*;
-import com.codecool.dungeoncrawl.data.actors.*;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -38,17 +45,40 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Skeleton(cell);
                             break;
+                        case 'c':
+                            cell.setType(CellType.FLOOR);
+                            new Cica(cell);
+                            break;
+                        case 'f':
+                            cell.setType(CellType.WALL);
+                            new Fire(cell);
+                        case 'l':
+                            cell.setType(CellType.FLOOR);
+                            new Life(cell);
+                            break;
+                        case 'k':
+                            cell.setType(CellType.WALL);
+                            new Key(cell);
+                            break;
+                        case 'r':
+                            cell.setType(CellType.FLOOR);
+                            new Sword(cell);
+                            break;
+                        case 'd':
+                            cell.setType(CellType.FLOOR);
+                            new Shield(cell);
+                            break;
+                        case 'p':
+                            cell.setType(CellType.FLOOR);
+                            new Portal(cell);
+                            break;
                         case '@':
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
                         case 'f':
-                            cell.setType(CellType.WALL);
+                            cell.setType(CellType.FLOOR);
                             new Fire(cell);
-                            break;
-                        case 'k':
-                            cell.setType(CellType.WALL);
-                            new Key(cell);
                             break;
                         case 'w':
                             cell.setType(CellType.FLOOR);
