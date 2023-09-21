@@ -1,4 +1,4 @@
-package com.codecool.dungeoncrawl.data.items;
+package com.codecool.dungeoncrawl.data.artifacts;
 
 import java.util.ArrayList;
 import java.util.List;
