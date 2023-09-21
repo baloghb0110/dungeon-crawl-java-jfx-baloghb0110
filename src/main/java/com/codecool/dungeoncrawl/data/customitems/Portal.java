@@ -21,6 +21,6 @@ public class Portal extends Item {
         if (logic == null) {
             logic = GameLogic.getInstance();
         }
-        logic.addItemToInventory();
+            logic.setLevelEnd();
     }
 }

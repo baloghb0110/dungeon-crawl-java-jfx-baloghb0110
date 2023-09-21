@@ -19,7 +19,7 @@ public class GameLogic {
 
     GameLogic() {
         this.map = MapLoader.loadMap();
-        this.inventory = new Inventory();
+        this.inventory = map.getPlayer().getInventory();
     }
 
     public static GameLogic getInstance() {
@@ -48,13 +48,44 @@ public class GameLogic {
         return currentCell;
     }
 
-    public String getPlayerHealth() {
+    public String getPlayerHealthLabel() {
         return Integer.toString(map.getPlayer().getHealth());
     }
 
-    public Inventory getInventory() {
-        return inventory;
+
+    private boolean levelEnd;
+
+    public void setLevelEnd() {
+        boolean hasKey;
+        List<Item> items = inventory.getItems();
+
+        hasKey = items.stream().anyMatch(item -> item.getName().equals("key"));
+
+        if (hasKey) {
+            System.out.println("level cleared");
+        }
     }
+
+    public int getPlayerHealth() {
+        return map.getPlayer().getHealth();
+    }
+
+
+    public void increaseHealth(int healthBoost) {
+        int currentHealth = getPlayerHealth();
+        map.getPlayer().setHealth(currentHealth + healthBoost);
+    }
+
+    public void increaseAttack(int atkBoost) {
+        int currentAtk = getPlayerAttack();
+        map.getPlayer().setDamage(currentAtk + atkBoost);
+    }
+
+    public void increaseDefense(int defBoost) {
+        int currentDef = getPlayerDefense();
+        map.getPlayer().setDefense(currentDef + defBoost);
+    }
+
 
     public void updateCurrentCell() {
         int playerX = map.getPlayer().getX();
@@ -66,16 +97,10 @@ public class GameLogic {
         updateCurrentCell();
 
         if (currentCell.getItem() != null) {
-            System.out.println("item found");
-
             String itemName = currentCell.getItem().getName();
 
             if (!itemName.equals("life")) {
                 addItemToInventoryHelper(itemName);
-            }
-
-            if (itemName.equals("life")) {
-                System.out.println("why are we in this method in the first place?");;
             }
 
             removeItemFromMap(itemName);
@@ -107,12 +132,20 @@ public class GameLogic {
         currentCell.setItem(null);
     }
 
-    public String getPlayerDamage() {
+    public String getPlayerAttackLabel() {
         return Integer.toString(map.getPlayer().getDamage());
     }
 
-    public String getPlayerDefense() {
+    public int getPlayerAttack() {
+        return map.getPlayer().getDamage();
+    }
+
+    public String getPlayerDefenseLabel() {
         return Integer.toString(map.getPlayer().getDefense());
+    }
+
+    public int getPlayerDefense() {
+        return map.getPlayer().getDefense();
     }
 
     public GameMap getMap() {

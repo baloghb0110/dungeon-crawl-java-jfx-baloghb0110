@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data.customitems;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.artifacts.Item;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 
@@ -21,7 +22,7 @@ public class Life extends Item {
         if (logic == null) {
             logic = GameLogic.getInstance();
         }
-//        increaseHealth();
+        logic.increaseHealth(4);
         logic.removeItemFromMap();
     }
 }

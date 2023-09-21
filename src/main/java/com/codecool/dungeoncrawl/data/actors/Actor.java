@@ -32,7 +32,7 @@ public abstract class Actor implements Drawable {
 
     }
 
-    private void healthDecrease(int dx, int dy) {
+    private void removeDeadActor(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell.getActor() != null && nextCell.getActor().getHealth() <= 0) {
             nextCell.setActor(null);
@@ -50,34 +50,18 @@ public abstract class Actor implements Drawable {
 
         if (nextCell.getActor() != null && currentActor instanceof Player) {
             neighbourActor.setHealth(neighbourActor.getHealth() - currentActor.getDamage());
-            //System.out.println(neighbourActor.getHealth());
-            healthDecrease(dx, dy);
+            removeDeadActor(dx, dy);
 
             if (currentActor.getDefense() < neighbourActor.getDamage()) {
                 currentActor.setHealth(currentActor.getHealth() -
                         (neighbourActor.getDamage() - currentActor.getDefense()));
-                healthDecrease(dx, dy);
+                removeDeadActor(dx, dy);
             }
         }
-        /*List<Actor> neighbourActors = cell.getNeighbourMonsters();
-        if (!neighbourActors.isEmpty()) {
-            for (Actor monster : neighbourActors) {
-                //int monsterHealth = monster.getHealth();
-                monster.setHealth(0);
-                //System.out.println(monsterHealth);
-            }
-        }*/
     }
 
     public void setHealth(int health) {
         this.health = health;
-    }
-
-    public void increaseHealth() {
-        int currentHealth = getHealth();
-        System.out.println("current HP: " + currentHealth);
-        currentHealth++;
-        setHealth(currentHealth);
     }
 
     public int getHealth() {

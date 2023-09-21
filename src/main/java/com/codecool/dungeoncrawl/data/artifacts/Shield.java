@@ -3,17 +3,17 @@ package com.codecool.dungeoncrawl.data.artifacts;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 
-public class Sword extends Item {
+public class Shield extends Item {
 
     private GameLogic logic;
 
-    public Sword(Cell cell) {
-        super(cell, "sword");
+    public Shield(Cell cell) {
+        super(cell, "shield");
     }
 
     @Override
     public String getTileName() {
-        return "sword";
+        return "shield";
     }
 
     @Override
@@ -22,6 +22,6 @@ public class Sword extends Item {
             logic = GameLogic.getInstance();
         }
         logic.addItemToInventory();
-        logic.increaseAttack(2);
+        logic.increaseDefense(3);
     }
 }

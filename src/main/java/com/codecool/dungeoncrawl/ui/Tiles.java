@@ -41,6 +41,7 @@ public class Tiles {
         tileMap.put("waterSwitchOff", new Tile(3, 10));
         tileMap.put("gate", new Tile(9, 11));
         tileMap.put("life", new Tile(23, 23));
+        tileMap.put("shield", new Tile(6, 17));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {

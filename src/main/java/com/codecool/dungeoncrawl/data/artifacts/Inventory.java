@@ -18,4 +18,8 @@ public class Inventory {
     public List<Item> getItems() {
         return new ArrayList<>(inventory);
     }
+
+    public boolean playerHasKey() {
+        return inventory.stream().anyMatch(item -> item.getName().equals("key"));
+    }
 }

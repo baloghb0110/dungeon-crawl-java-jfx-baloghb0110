@@ -52,8 +52,6 @@ public class UI {
             currentCell.getItem().action(logic);
         }
 
-//        logic.addItemToInventory();
-
     }
 
     public void refresh() {
@@ -73,8 +71,8 @@ public class UI {
                 }
             }
         }
-        mainStage.setHealthLabelText(logic.getPlayerHealth());
-        mainStage.setDamageLabelText(logic.getPlayerDamage());
-        mainStage.setDefenseLabelText(logic.getPlayerDefense());
+        mainStage.setHealthLabelText(logic.getPlayerHealthLabel());
+        mainStage.setDamageLabelText(logic.getPlayerAttackLabel());
+        mainStage.setDefenseLabelText(logic.getPlayerDefenseLabel());
     }
 }
