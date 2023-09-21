@@ -73,6 +73,13 @@ public abstract class Actor implements Drawable {
         this.health = health;
     }
 
+    public void increaseHealth() {
+        int currentHealth = getHealth();
+        System.out.println("current HP: " + currentHealth);
+        currentHealth++;
+        setHealth(currentHealth);
+    }
+
     public int getHealth() {
         return health;
     }

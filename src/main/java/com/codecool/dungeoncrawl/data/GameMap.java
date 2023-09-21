@@ -1,8 +1,6 @@
 package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Player;
-import com.codecool.dungeoncrawl.data.items.Inventory;
-import com.codecool.dungeoncrawl.logic.Game;
 
 public class GameMap {
     private int width;

@@ -1,9 +1,9 @@
-package com.codecool.dungeoncrawl.data.items;
+package com.codecool.dungeoncrawl.data.artifacts;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 
-public abstract class Item implements Drawable {
+public abstract class Item implements Drawable, ItemAction {
     private Cell cell;
     private String name;
 

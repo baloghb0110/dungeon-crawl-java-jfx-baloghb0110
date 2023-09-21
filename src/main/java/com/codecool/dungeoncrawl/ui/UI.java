@@ -16,7 +16,6 @@ import java.util.Set;
 public class UI {
     private Canvas canvas;
     private GraphicsContext context;
-
     private MainStage mainStage;
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
@@ -45,7 +44,16 @@ public class UI {
             keyHandler.perform(keyEvent, logic.getMap());
         }
         refresh();
-        logic.addItemToInventory();
+
+        // check for item actions
+        logic.updateCurrentCell();
+        Cell currentCell = logic.getCurrentCell();
+        if (currentCell.getItem() != null) {
+            currentCell.getItem().action(logic);
+        }
+
+//        logic.addItemToInventory();
+
     }
 
     public void refresh() {

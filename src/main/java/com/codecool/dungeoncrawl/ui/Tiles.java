@@ -33,7 +33,6 @@ public class Tiles {
         tileMap.put("sword", new Tile(1, 28));
         tileMap.put("portal", new Tile(10, 10));
         tileMap.put("fire", new Tile(15, 10));
-        tileMap.put("key", new Tile(16, 23));
         tileMap.put("water", new Tile(12, 4));
         tileMap.put("waterGate", new Tile(0, 9));
         tileMap.put("waterWall", new Tile(2, 11));
@@ -41,9 +40,11 @@ public class Tiles {
         tileMap.put("waterSwitchOn", new Tile(4, 10));
         tileMap.put("waterSwitchOff", new Tile(3, 10));
         tileMap.put("gate", new Tile(9, 11));
+        tileMap.put("life", new Tile(23, 23));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
+
         Tile tile = tileMap.get(d.getTileName());
         context.drawImage(tileset, tile.x, tile.y, tile.w, tile.h,
                 x * TILE_WIDTH, y * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH);
