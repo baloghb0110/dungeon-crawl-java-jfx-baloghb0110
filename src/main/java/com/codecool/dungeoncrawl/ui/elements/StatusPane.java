@@ -8,15 +8,15 @@ import javafx.scene.layout.GridPane;
 public class StatusPane {
     public static final int RIGHT_PANEL_WIDTH = 200;
     public static final int RIGHT_PANEL_PADDING = 10;
-    private GridPane ui;
-    private Label healthTextLabel;
-    private Label healthValueLabel;
-    private Label damageTextLabel;
-    private Label damageValueLabel;
-    private Label defenseTextLabel;
-    private Label defenseValueLabel;
-    private Label inventoryTextLabel;
-    private Label inventoryValueLabel;
+    private final GridPane ui;
+    private final Label healthTextLabel;
+    private final Label healthValueLabel;
+    private final Label damageTextLabel;
+    private final Label damageValueLabel;
+    private final Label defenseTextLabel;
+    private final Label defenseValueLabel;
+    private final Label inventoryTextLabel;
+    private final Label inventoryValueLabel;
 
     public StatusPane() {
         ui = new GridPane();

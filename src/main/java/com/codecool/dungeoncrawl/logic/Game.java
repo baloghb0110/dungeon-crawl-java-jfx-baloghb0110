@@ -14,7 +14,7 @@ public class Game extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         Set<KeyHandler> keyHandlers = Set.of(new Up(), new Down(), new Left(), new Right(), new Space());
         GameLogic logic = new GameLogic();
         UI ui = new UI(logic, keyHandlers);
