@@ -16,7 +16,7 @@ public abstract class Actor implements Drawable {
     private int damage = 3;
     private int defense = 1;
 
-    private Random random;
+    private final Random random;
 
     public Actor(Cell cell) {
         this.cell = cell;

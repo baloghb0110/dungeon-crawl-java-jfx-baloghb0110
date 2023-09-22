@@ -5,7 +5,6 @@ import com.codecool.dungeoncrawl.data.artifacts.Item;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 
 public class Portal extends Item {
-    private GameLogic logic;
 
     public Portal(Cell cell) {
         super(cell, "portal");

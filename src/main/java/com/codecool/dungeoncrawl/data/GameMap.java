@@ -4,7 +4,6 @@ import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.specialities.RunningWater;
 import com.codecool.dungeoncrawl.data.specialities.Speciality;
-import com.codecool.dungeoncrawl.data.specialities.Water;
 import com.codecool.dungeoncrawl.data.specialities.WaterGate;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 
@@ -12,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameMap {
-    private int width;
-    private int height;
-    private Cell[][] cells;
+    private final int width;
+    private final int height;
+    private final Cell[][] cells;
     private List<Skeleton> skeletonList;
     private Player player;
 

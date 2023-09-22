@@ -19,6 +19,7 @@ import java.util.Scanner;
 public class MapLoader {
     public static GameMap loadMap(String mapName) {
         InputStream is = MapLoader.class.getResourceAsStream(mapName);
+        assert is != null;
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();

@@ -16,7 +16,7 @@ public class GameLogic {
     private static GameLogic instance;
     private GameMap map;
     private Cell currentCell;
-    private Inventory inventory;
+    private final Inventory inventory;
 
     GameLogic() {
         this.map = MapLoader.loadMap("/map.txt");
