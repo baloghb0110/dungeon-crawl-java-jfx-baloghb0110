@@ -5,7 +5,6 @@ import com.codecool.dungeoncrawl.logic.GameLogic;
 
 public class Shield extends Item {
 
-    private GameLogic logic;
 
     public Shield(Cell cell) {
         super(cell, "shield");
@@ -13,7 +12,7 @@ public class Shield extends Item {
 
     @Override
     public String getTileName() {
-        return "shield";
+        return this.getName();
     }
 
     @Override

@@ -9,10 +9,9 @@ public class Key extends Item {
         super(cell, "key");
     }
 
-    private GameLogic logic;
     @Override
     public String getTileName() {
-        return "key";
+        return this.getName();
     }
 
 

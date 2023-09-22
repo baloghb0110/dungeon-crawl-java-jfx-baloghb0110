@@ -19,11 +19,4 @@ public abstract class Item implements Drawable, ItemAction {
 
     public String getName() { return name; }
 
-    public int getX() {
-        return cell.getX();
-    }
-
-    public int getY() {
-        return cell.getY();
-    }
 }

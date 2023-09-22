@@ -13,7 +13,7 @@ public class Portal extends Item {
 
     @Override
     public String getTileName() {
-        return "portal";
+        return this.getName();
     }
 
     @Override

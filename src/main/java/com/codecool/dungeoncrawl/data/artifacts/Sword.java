@@ -5,15 +5,13 @@ import com.codecool.dungeoncrawl.logic.GameLogic;
 
 public class Sword extends Item {
 
-    private GameLogic logic;
-
     public Sword(Cell cell) {
         super(cell, "sword");
     }
 
     @Override
     public String getTileName() {
-        return "sword";
+        return this.getName();
     }
 
     @Override

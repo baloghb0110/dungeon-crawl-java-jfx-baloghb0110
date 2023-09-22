@@ -6,7 +6,6 @@ import com.codecool.dungeoncrawl.data.artifacts.Item;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 
 public class Life extends Item {
-    private GameLogic logic;
 
     public Life(Cell cell) {
         super(cell, "life");
@@ -14,7 +13,7 @@ public class Life extends Item {
 
     @Override
     public String getTileName() {
-        return "life";
+        return this.getName();
     }
 
     @Override

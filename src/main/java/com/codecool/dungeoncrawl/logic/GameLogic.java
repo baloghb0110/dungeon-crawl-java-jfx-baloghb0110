@@ -66,10 +66,6 @@ public class GameLogic {
         }
     }
 
-    public boolean getLevelEnd() {
-        return levelEnd;
-    }
-
     public int getPlayerHealth() {
         return map.getPlayer().getHealth();
     }
