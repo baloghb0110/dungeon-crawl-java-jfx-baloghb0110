@@ -15,7 +15,6 @@ import java.util.List;
 public class GameLogic {
     private static GameLogic instance;
     private GameMap map;
-    private Player player;
     private Cell currentCell;
     private Inventory inventory;
 
@@ -54,13 +53,8 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getHealth());
     }
 
-    private boolean levelEnd = false;
-
     public void setLevelEnd() {
-        List<Item> items = inventory.getItems();
-
         if (inventory.playerHasKey()) {
-            levelEnd = true;
             System.out.println("level cleared");
             this.map = MapLoader.loadMap("/level-2-map.txt");
         }
